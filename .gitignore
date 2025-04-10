@@ -1,0 +1,57 @@
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment files
+.env
+.venv/
+venv/
+env/
+
+# Ignore dependency files
+requirements.txt
+
+# Ignore logs and temp files
+*.log
+*.csv
+
+# Ignore IDE/project files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Ignore Flask cache and instance files
+instance/
+*.sqlite3
+*.db
+
+# Ignore static files (optional, if dynamically generated)
+static/
+
+# Ignore compiled HTML/JS/CSS (if built separately)
+dist/
+node_modules/
+# Ignore virtual environment directory
+venv/
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore the Flask app's instance directory
+instance/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore other IDE configurations
+.idea/
+.vscode/
+
+# Ignore the Docker image or container files
+*.dockerignore
+Dockerfile*

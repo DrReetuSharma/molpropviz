@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molecular Property Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>AI-MolProp Visualizer: Molecular Property Analyses & Visualization</h2>
+    
+    <!-- Form to upload CSV and select properties -->
+    <form action="/calculate" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Upload CSV (with ID and SMILES):</label>
+            <input type="file" class="form-control" id="file" name="file" required>
+        </div>
+
+        <div class="form-group">
+            <label for="properties">Select Properties:</label><br>
+            {% for property in properties %}
+                <input type="checkbox" name="properties" value="{{ property }}" id="{{ property }}">
+                <label for="{{ property }}">{{ property }}</label><br>
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    
+    {% if time_taken_seconds %}
+        <div class="success">
+            <p>Calculation completed in {{ time_taken_seconds }} seconds.</p>
+            <p><a href="/download/{{ result_file }}" class="btn btn-success">Download Results CSV</a></p>
+        </div>
+    {% endif %}
+
+    {% if results %}
+        <div class="table-container">
+            <h3>Results</h3>
+            {{ results | safe }}
+        </div>
+    {% endif %}
+
+    {% if plot_files %}
+        <div>
+            <h3>Plots</h3>
+            {% for plot in plot_files %}
+                <img src="{{ url_for('plot', property=plot.split('.')[0]) }}" alt="{{ plot }}" class="img-fluid">
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<!-- Footer Section -->
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+        <p>For documentation, visit <a href="/documentation">here</a></p>
+        <p>Contact us at: <a href="mailto:sharmar@aspire10x.com">Contact: Dr Reetu Sharma</a></p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
