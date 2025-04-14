@@ -53,8 +53,6 @@ instance/
 .vscode/
 
 # Ignore the Docker image or container files
-*.dockerignore
-Dockerfile*
 # Ignore virtual environment directory
 venv/
 
@@ -75,5 +73,3 @@ instance/
 .vscode/
 
 # Ignore the Docker image or container files
-*.dockerignore
-Dockerfile*
