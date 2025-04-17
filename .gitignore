@@ -10,8 +10,6 @@ __pycache__/
 venv/
 env/
 
-# Ignore dependency files
-requirements.txt
 
 # Ignore logs and temp files
 *.log
